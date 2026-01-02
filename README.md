@@ -58,14 +58,13 @@ Hooks → components read/update state using hooks
       1. Destructure the variable
       2. Or using object destructuring
 
-  > // Destructure the variable 
   ```
+    // Destructure the variable 
     const x = useXStore((state) => state.x);
   ```
 
-  >// object destructuring
-  
   ```
+    // object destructuring
     const { x } = useXStore();
   ```
 
