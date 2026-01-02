@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+## Zustand
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`Zustand` is a small state management library for React
 
-Currently, two official plugins are available:
+Used to manage global state (state shared across components)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Much simpler than Redux
 
-## React Compiler
+No providers, no reducers, no boilerplate
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### When do we need Zustand?
 
-## Expanding the ESLint configuration
+When props drilling becomes messy
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+When multiple components need the same data
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Example use cases:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Login status
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Cart items
+
+- Theme (dark/light)
+
+- User profile
+
+### Key Concepts in Zustand
+
+Store → place where state lives
+
+State → data (count, user, cart, etc.)
+
+Actions → functions that update state
+
+Hooks → components read/update state using hooks
+
+1. Installing Zustand
+
+```
+    npm install zustand
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Store
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+    import { create } from "zustand";
+
+    export const useXStore = create()(
+        x: null,
+        setX: (value) => set(x: value),
+    );
+
+```
+
+1. Actions (two ways)
+      1. Destructure the variable
+      2. Or using object destructuring
+
+  ```
+  // Destructure the variable 
+    const x = useXStore((state) => state.x);
+  ```
+
+  ```
+  // object destructuring
+    const { x } = useXStore();
+  ```
