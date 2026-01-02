@@ -23,7 +23,7 @@ export default function LogoutConfirm() {
         </button>
 
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           className="rounded border px-6 py-2"
         >
           No
