@@ -52,17 +52,17 @@ Hooks → components read/update state using hooks
 
 ```
 
-3. Actions
+3. Actions (two ways)
 
-  1. Destructure the variable 
-
-  ```
-  function from the store
-  const x = useXStore((state) => state.x);
-  ```
-
-  2.  Or using object destructuring
+      1. Destructure the variable 
 
   ```
-  const { x } = useXStore();
+    function from the store
+    const x = useXStore((state) => state.x);
+  ```
+
+     2.  Or using object destructuring
+
+  ```
+    const { x } = useXStore();
   ```
