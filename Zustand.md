@@ -53,7 +53,6 @@ Hooks → components read/update state using hooks
 ```
 
 3. Actions (two ways)
-
       1. Destructure the variable 
 
   ```
